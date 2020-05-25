@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
+import 'itemizedList.dart';
 
-void main() => runApp(MyApp());
+int addNumbers(num1, num2) {
+  return num1 + num2;
+}
 
-class MyApp extends StatelessWidget {
+void main() => runApp(App());
+
+class App extends StatefulWidget {
   @override
+  State<StatefulWidget> createState() {
+    return _AppState();
+  }
+}
+
+class _AppState extends State<App> {
+  String name = "bob";
+  List<String> list = [];
+
+  /// Add to list
+  void addToList(String value) {
+    setState(() {
+      this.list.add(value);
+    });
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to Flutter '),
+          backgroundColor: Color.fromARGB(255, 0, 0, 1),
+          title: Text(
+            "Money App",
+            style: TextStyle(fontSize: 20),
+          ),
         ),
-        body: Center(child: Text('Hello World, Flutter wtf?!'))
+        body: Column(
+          children: <Widget>[
+            ItemizedList(this.list, this.addToList),
+          ],
+        ),
       ),
     );
   }
