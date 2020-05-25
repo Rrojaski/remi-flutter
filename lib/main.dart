@@ -1,17 +1,39 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+int addNumbers(num1, num2) {
+  return num1 + num2;
+}
 
-class MyApp extends StatelessWidget {
-  @override
+void raname(String original, String replace) {
+  original = replace;
+}
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  String name = "bob";
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Flutter',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to Flutter '),
+          title: Text("Welcome " + this.name),
         ),
-        body: Center(child: Text('Hello World, Flutter wtf?!'))
+        body: Column(
+          children: <Widget>[
+            Text('Another widget'),
+            RaisedButton(
+              child: Text("one"),
+              onPressed: () => addNumbers(2, 3),
+            ),
+            RaisedButton(
+              child: Text("Raname"),
+              onPressed: () => raname(this.name, 'steve'),
+            ),
+            RaisedButton(child: Text("three")),
+          ],
+        ),
       ),
     );
   }
