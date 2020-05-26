@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ItemizedList extends StatelessWidget {
-  List<String> itemList = ["apples"];
+  List<String> itemList = ["apples", "grapes"];
   final Function addToList;
   ItemizedList(this.itemList, this.addToList);
 
