@@ -33,7 +33,7 @@ class ItemizedList extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.red,
               ),
-              child: Text("Percentage Calculator ")),
+              child: Text("Percentage Calculator")),
           RaisedButton(
             child: Text("Add"),
             onPressed: () => this.addToList("Nissan"),
