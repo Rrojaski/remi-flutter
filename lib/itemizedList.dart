@@ -24,7 +24,7 @@ class ItemizedList extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(width: 100, child: Text("Amount ")),
+              Container(width: 100, child: Text("Amount")),
               Flexible(child: TextFormField(keyboardType: TextInputType.number))
             ],
           ),
