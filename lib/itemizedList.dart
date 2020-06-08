@@ -36,7 +36,7 @@ class ItemizedList extends StatelessWidget {
               child: Text("Percentage Calculator")),
           RaisedButton(
             child: Text("Add"),
-            onPressed: () => this.addToList("Nissan"),
+            onPressed: () => this.addToList("Nissan Quest"),
           ),
         ]));
   }
