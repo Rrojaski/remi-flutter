@@ -31,7 +31,7 @@ class _AppState extends State<App> {
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 0, 0, 1),
           title: Text(
-            "Money App Reloaded 2.2",
+            "Money App Reloaded 2.4",
             style: TextStyle(fontSize: 20),
           ),
         ),
