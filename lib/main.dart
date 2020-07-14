@@ -15,7 +15,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  String name = "bob sagat beaver does it all too well";
+  String name = "bob sagat beaver does it all too well and more";
   List<String> list = [];
 
   /// Add to list
