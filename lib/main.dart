@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'itemizedList.dart';
-
-int addNumbers(num1, num2) {
-  return num1 + num2;
-}
 
 void main() => runApp(App());
 
@@ -15,29 +10,19 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  String name = "Steven sagat beaver does it all too well and more";
-  List<String> list = [];
-
-  /// Add to list
-  void addToList(String value) {
-    setState(() {
-      this.list.add(value);
-    });
-  }
-
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 0, 0, 1),
+          backgroundColor: Color.fromARGB(255, 255, 0, 1),
           title: Text(
-            "Money App Reloaded 2.4",
+            "REMI",
             style: TextStyle(fontSize: 20),
           ),
         ),
         body: Column(
           children: <Widget>[
-            ItemizedList(this.list, this.addToList),
+            // ItemizedList(this.list, this.addToList),
           ],
         ),
       ),
