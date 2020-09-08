@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/splash.dart';
 
 void main() => runApp(App());
 
@@ -22,7 +23,10 @@ class _AppState extends State<App> {
         ),
         body: Column(
           children: <Widget>[
-            // ItemizedList(this.list, this.addToList),
+            SplashScreen(),
+            Container(
+              child: Text("Hello"),
+            )
           ],
         ),
       ),
