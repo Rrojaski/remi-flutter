@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../assets/';
+
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,6 +7,7 @@ class SplashScreen extends StatelessWidget {
         margin: EdgeInsets.all(20),
         width: double.infinity,
         child: Column(children: <Widget>[
+          Image.asset('assets/images/kawai_girl.png'),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
