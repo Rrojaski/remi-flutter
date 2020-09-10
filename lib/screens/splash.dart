@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
+import './home.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(20),
         width: double.infinity,
-        child: Column(children: <Widget>[
-          Image.asset('assets/images/kawai_girl.png'),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(width: 100, child: Text("Account 1234")),
-              Flexible(child: TextFormField(keyboardType: TextInputType.text))
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(width: 100, child: Text("Amount Found Not Here")),
-              Flexible(child: TextFormField(keyboardType: TextInputType.number))
-            ],
-          ),
-          Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                color: Colors.red,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset('assets/images/kawai_girl.png'),
+              Container(
+                child: Text("Welcome to REMI"),
               ),
-              child: Text("Percentage Calculator Calculator")),
-          RaisedButton(
-            child: Text("Add"),
-          ),
-        ]));
+              RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+                child: Text("Get Started"),
+              )
+            ]));
   }
 }
