@@ -9,6 +9,9 @@ class HomeScreen extends StatelessWidget {
             title: Text(
               "REMI",
               style: TextStyle(fontSize: 20),
-            )));
+            )),
+        body: Column(
+          children: <Widget>[Text("Home Screen")],
+        ));
   }
 }
