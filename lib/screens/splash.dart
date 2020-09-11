@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './home.dart';
+import './sign_in.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
                   );
                 },
                 child: Text("Get Started"),
