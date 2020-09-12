@@ -1,6 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SignInScreen extends StatelessWidget {
+  Future<void> signIn() async {
+    var json = jsonEncode({'id': 1, 'name': 'adam'});
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    var reponse = await http.post(url,
+        body: json,
+        headers: {"Content-type": "application/json; charset=UTF-8"});
+    print(reponse.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +44,7 @@ class SignInScreen extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(bottom: 30),
                     child: TextFormField(
+                      obscureText: true,
                       decoration: const InputDecoration(
                         hintText: 'Password',
                       ),
@@ -46,7 +59,9 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        signIn();
+                      },
                       child: Text("Sign In"),
                     ),
                     RaisedButton(
