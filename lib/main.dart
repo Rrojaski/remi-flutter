@@ -13,6 +13,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: Colors.yellow),
       home: Scaffold(
         body: Column(
           children: <Widget>[
