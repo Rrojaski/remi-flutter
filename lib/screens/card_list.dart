@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/Chinese_Card.model.dart';
 
-class CardListScreen extends StatelessWidget {
-  // final List<ChineseCard> cardList = new List([
-  //   new ChineseCard(
-  //       character: 'Test Char', meaning: 'Test Meaning', piyin: 'Test Piyin')
-  // ]);
+class CardListScreen extends StatefulWidget {
+  @override
+  createState() => new CardListState();
+}
 
-  final List<ChineseCard> cardList = [];
+class CardListState extends State<CardListScreen> {
+  // final List<ChineseCard> cardList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,13 @@ class CardListScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             )),
-        body: Column(
-          children: <Widget>[
-            Column(
-              children: cardList.length > 0 ? cardList : [],
-            ),
-          ],
+        body: new ListView.builder(
+          itemBuilder: (context, index) {
+            if (index < 5) {
+              return new ListTile(
+                  title: Text("Character"), subtitle: Text('Test Meaning'));
+            }
+          },
         ));
   }
 }
