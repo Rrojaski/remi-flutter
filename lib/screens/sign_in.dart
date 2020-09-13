@@ -1,16 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import './dashboard.dart';
+// import 'package:http/http.dart' as http;
 
 class SignInScreen extends StatelessWidget {
-  Future<void> signIn() async {
-    var json = jsonEncode({'id': 1, 'name': 'adam'});
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    var reponse = await http.post(url,
-        body: json,
-        headers: {"Content-type": "application/json; charset=UTF-8"});
-    print(reponse.body);
+  Future<void> signIn(context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardScreen()),
+    );
+    // var json = jsonEncode({'id': 1, 'name': 'adam'});
+    // const url = 'https://jsonplaceholder.typicode.com/posts';
+    // var reponse = await http.post(url,
+    //     body: json,
+    //     headers: {"Content-type": "application/json; charset=UTF-8"});
+    // print(reponse.body);
   }
 
   @override
@@ -60,7 +65,7 @@ class SignInScreen extends StatelessWidget {
                   children: [
                     RaisedButton(
                       onPressed: () {
-                        signIn();
+                        signIn(context);
                       },
                       child: Text("Sign In"),
                     ),
