@@ -25,7 +25,7 @@ class CardListState extends State<CardListScreen> {
           itemBuilder: (context, index) {
             if (index < 5) {
               return new ListTile(
-                  title: Text("Character"), subtitle: Text('Test Meaning'));
+                  title: Text("愛"), subtitle: Text('Love'));
             }
           },
         ));
