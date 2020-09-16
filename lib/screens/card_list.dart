@@ -23,9 +23,12 @@ class CardListState extends State<CardListScreen> {
             )),
         body: new ListView.builder(
           itemBuilder: (context, index) {
-            if (index < 5) {
-              return new ListTile(
-                  title: Text("愛"), subtitle: Text('Love'));
+            if (index > 5) {
+              if (index.isEven) {
+                return new ListTile(title: Text("愛"), subtitle: Text('Love'));
+              } else {
+              return new ListTile(title: Text("喜歡"), subtitle: Text('Joyful'));
+              }
             }
           },
         ));
