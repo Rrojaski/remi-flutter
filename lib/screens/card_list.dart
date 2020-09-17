@@ -7,7 +7,10 @@ class CardListScreen extends StatefulWidget {
 }
 
 class CardListState extends State<CardListScreen> {
-  // final List<ChineseCard> cardList = [];
+  List<ChineseCard> cardList = [
+    new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
+    new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +25,12 @@ class CardListState extends State<CardListScreen> {
               ),
             )),
         body: new ListView.builder(
+          itemCount: cardList.length,
           itemBuilder: (context, index) {
-            if (index > 5) {
-              if (index.isEven) {
-                return new ListTile(title: Text("愛"), subtitle: Text('Love'));
-              } else {
-              return new ListTile(title: Text("喜歡"), subtitle: Text('Joyful'));
-              }
-            }
+            return Card(
+                child: ListTile(
+                    title: Text(cardList[index].character),
+                    subtitle: Text(cardList[index].meaning)));
           },
         ));
   }
