@@ -29,7 +29,13 @@ class CardListState extends State<CardListScreen> {
           itemBuilder: (context, index) {
             return Card(
                 child: ListTile(
-                    title: Text(cardList[index].character),
+                    leading: Text(
+                      cardList[index].character,
+                      style: TextStyle(
+                        fontSize: 20
+                      ),
+                    ),
+                    title: Text(cardList[index].piyin),
                     subtitle: Text(cardList[index].meaning)));
           },
         ));
