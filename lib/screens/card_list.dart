@@ -9,7 +9,8 @@ class CardListScreen extends StatefulWidget {
 class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [
     new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
-    new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ")
+    new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ"),
+     new ChineseCard(character: "西瓜", meaning: "watermelon", piyin: "xīguā")
   ];
 
   @override

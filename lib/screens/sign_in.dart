@@ -22,8 +22,11 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-            padding:
-                const EdgeInsets.only(top: 50, right: 15, bottom: 0, left: 15),
+            padding: EdgeInsets.symmetric(
+              horizontal: 24,
+              vertical: 52
+            ),
+                // const EdgeInsets.only(top: 50, right: 15, bottom: 0, left: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
