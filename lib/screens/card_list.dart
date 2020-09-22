@@ -10,7 +10,8 @@ class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [
     new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
     new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ"),
-     new ChineseCard(character: "西瓜", meaning: "watermelon", piyin: "xīguā")
+    new ChineseCard(character: "西瓜", meaning: "watermelon", piyin: "xīguā"),
+    new ChineseCard(character: "北京", meaning: "beijing", piyin: "pīn​yīn​")
   ];
 
   @override
@@ -32,9 +33,7 @@ class CardListState extends State<CardListScreen> {
                 child: ListTile(
                     leading: Text(
                       cardList[index].character,
-                      style: TextStyle(
-                        fontSize: 20
-                      ),
+                      style: TextStyle(fontSize: 20),
                     ),
                     title: Text(cardList[index].piyin),
                     subtitle: Text(cardList[index].meaning)));
