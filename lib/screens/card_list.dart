@@ -22,6 +22,9 @@ class CardListState extends State<CardListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white, //change your color here
+            ),
             backgroundColor: Color.fromARGB(255, 255, 0, 1),
             title: Text(
               "Card List",
