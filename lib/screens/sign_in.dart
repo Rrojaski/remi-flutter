@@ -22,11 +22,8 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 52
-            ),
-                // const EdgeInsets.only(top: 50, right: 15, bottom: 0, left: 15),
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 52),
+            // const EdgeInsets.only(top: 50, right: 15, bottom: 0, left: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -63,19 +60,30 @@ class SignInScreen extends StatelessWidget {
                         return null;
                       },
                     )),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RaisedButton(
-                      onPressed: () {
-                        signIn(context);
-                      },
-                      child: Text("Sign In"),
+                    ButtonTheme(
+                      minWidth: 300.0,
+                      child: RaisedButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          signIn(context);
+                        },
+                        child: Text("Sign In"),
+                      ),
                     ),
-                    RaisedButton(
-                      onPressed: () {},
-                      child: Text("Sign Up"),
-                    )
+                    Container(
+                      margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
+                      child: Text("Don't have an account?"),
+                    ),
+                    ButtonTheme(
+                        minWidth: 300.0,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          onPressed: () {},
+                          child: Text("Sign Up"),
+                        ))
                   ],
                 )
               ],
