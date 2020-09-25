@@ -34,7 +34,7 @@ class StudyScreenState extends State<StudyScreen> {
         1,
         (int i) => getRandomNumber() == 1
             ? new Card1(chineseCard: cardList[0])
-            : new Card1(chineseCard: cardList[0]));
+            : new Card2(chineseCard: cardList[0]));
     return Scaffold(
         appBar: AppBar(
             iconTheme: IconThemeData(
