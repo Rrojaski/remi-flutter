@@ -17,6 +17,10 @@ getRandomNumber() {
 }
 
 class StudyScreenState extends State<StudyScreen> {
+  // final cardViewSatus = {
+  //   int study:  0,
+  // };
+
   List<ChineseCard> cardList = [
     new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
     new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ"),
