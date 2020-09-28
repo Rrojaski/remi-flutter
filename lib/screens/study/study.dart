@@ -17,6 +17,11 @@ getRandomNumber() {
 }
 
 class StudyScreenState extends State<StudyScreen> {
+  // final cardViewSatus = {
+  //   int study:  0,
+  // };
+  
+
   List<ChineseCard> cardList = [
     new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
     new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ"),
@@ -34,7 +39,7 @@ class StudyScreenState extends State<StudyScreen> {
         1,
         (int i) => getRandomNumber() == 1
             ? new Card1(chineseCard: cardList[0])
-            : new Card1(chineseCard: cardList[0]));
+            : new Card2(chineseCard: cardList[0]));
     return Scaffold(
         appBar: AppBar(
             iconTheme: IconThemeData(
