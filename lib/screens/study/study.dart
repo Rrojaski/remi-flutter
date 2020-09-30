@@ -17,7 +17,6 @@ getRandomNumber() {
 }
 
 class StudyScreenState extends State<StudyScreen> {
-
   List<ChineseCard> cardList = [
     new ChineseCard(character: "水", meaning: "water", piyin: "shui"),
     new ChineseCard(character: "頻果", meaning: "apple", piyin: "píngguǒ"),
@@ -26,7 +25,8 @@ class StudyScreenState extends State<StudyScreen> {
     new ChineseCard(character: "再見", meaning: "goodbye", piyin: "zàijiàn"),
     new ChineseCard(character: "後面", meaning: "behind", piyin: "hòumiàn"),
     new ChineseCard(character: "家", meaning: "yesterday", piyin: "family"),
-    new ChineseCard(character: "熱", meaning: "hot", piyin: "rè")
+    new ChineseCard(character: "熱", meaning: "hot", piyin: "rè"),
+    new ChineseCard(character: "冷", meaning: "cold", piyin: "lěng")
   ];
 
   @override
