@@ -37,7 +37,7 @@ class Card1State extends State<Card1> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Please enter some text';
+                            return '';
                           }
                           return null;
                         },
