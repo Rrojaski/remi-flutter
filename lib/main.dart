@@ -1,3 +1,4 @@
+import 'package:REMI/constants.dart';
 import 'package:flutter/material.dart';
 import './screens/splash.dart';
 
@@ -14,7 +15,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.yellow),
+      theme: ThemeData(primaryColor: primaryColor),
       home: Scaffold(
         body: Column(
           children: <Widget>[

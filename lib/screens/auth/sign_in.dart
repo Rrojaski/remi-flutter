@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import './dashboard.dart';
+import '../dashboard/dashboard.dart';
 // import 'package:http/http.dart' as http;
 
 class SignInScreen extends StatelessWidget {
@@ -21,6 +21,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 52),
             // const EdgeInsets.only(top: 50, right: 15, bottom: 0, left: 15),
@@ -73,17 +74,17 @@ class SignInScreen extends StatelessWidget {
                         child: Text("Sign In"),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
-                      child: Text("Don't have an account?"),
-                    ),
-                    ButtonTheme(
-                        minWidth: 300.0,
-                        child: RaisedButton(
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Text("Sign Up"),
-                        ))
+                    // Container(
+                    //   margin: EdgeInsets.only(top: 30.0, bottom: 10.0),
+                    //   child: Text("Don't have an account?"),
+                    // ),
+                    // ButtonTheme(
+                    //     minWidth: 300.0,
+                    //     child: RaisedButton(
+                    //       color: Colors.white,
+                    //       onPressed: () {},
+                    //       child: Text("Sign Up"),
+                    //     ))
                   ],
                 )
               ],

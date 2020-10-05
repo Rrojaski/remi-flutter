@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/Chinese_Card.model.dart';
+import '../../models/Chinese_Card.model.dart';
 
 class CardListScreen extends StatefulWidget {
   @override
@@ -21,18 +21,7 @@ class CardListState extends State<CardListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.white, //change your color here
-            ),
-            backgroundColor: Color.fromARGB(255, 255, 0, 1),
-            title: Text(
-              "Card List",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            )),
+        appBar: buildAppBar(),
         body: new ListView.builder(
           itemCount: cardList.length,
           itemBuilder: (context, index) {
@@ -45,6 +34,20 @@ class CardListState extends State<CardListScreen> {
                     title: Text(cardList[index].piyin),
                     subtitle: Text(cardList[index].meaning)));
           },
+        ));
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: Text(
+          "Card List",
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ));
   }
 }

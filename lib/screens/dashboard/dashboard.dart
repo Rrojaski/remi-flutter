@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './card_list.dart';
-import 'study/study.dart';
+import '../card_list/card_list.dart';
+import '../study/study.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -10,7 +10,6 @@ class DashboardScreen extends StatelessWidget {
             iconTheme: IconThemeData(
               color: Colors.white, //change your color here
             ),
-            backgroundColor: Color.fromARGB(255, 255, 0, 1),
             title: Text(
               "Dashboard",
               style: TextStyle(fontSize: 20, color: Colors.white),
