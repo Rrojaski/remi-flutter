@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './sign_in.dart';
+import 'auth/sign_in.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -8,13 +8,18 @@ class SplashScreen extends StatelessWidget {
         width: double.infinity,
         height: MediaQuery.of(context).size.height,
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset('assets/images/kawai_girl.png'),
               Container(
-                child: Text("Welcome to REMI"),
+                child: Text(
+                  "Welcome to REMI",
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
               RaisedButton(
+                color: Colors.white,
                 onPressed: () {
                   Navigator.push(
                     context,

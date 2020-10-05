@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './card_1.dart';
-import './card_2.dart';
-import './card_definition.dart';
+import 'components/card_1.dart';
+import 'components/card_2.dart';
+import 'components/card_definition.dart';
 import 'dart:math';
 import '../../models/Chinese_Card.model.dart';
 
@@ -37,17 +37,17 @@ class StudyScreenState extends State<StudyScreen> {
             ? new Card1(chineseCard: cardList[0])
             : new Card2(chineseCard: cardList[0]));
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             iconTheme: IconThemeData(
               color: Colors.white, //change your color here
             ),
-            backgroundColor: Color.fromARGB(255, 255, 0, 1),
             title: Text(
               "Study",
               style: TextStyle(fontSize: 20, color: Colors.white),
             )),
         body: Container(
-            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
+            margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
             width: double.infinity,
             height: MediaQuery.of(context).size.height,
             child: Column(
