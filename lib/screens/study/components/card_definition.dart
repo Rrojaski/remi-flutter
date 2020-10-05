@@ -43,39 +43,62 @@ class CardDefinitionState extends State<CardDefinition> {
                       style: TextStyle(fontSize: 120.0),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 40.0, bottom: 30.0),
-                      child: Text(
-                        widget.chineseCard.piyin,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      widget.chineseCard.meaning,
-                      style: TextStyle(fontSize: 20.0),
-                    ),
+                        margin: EdgeInsets.only(top: 40.0, bottom: 30.0, left: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              "Piyin:",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                            Text(
+                              widget.chineseCard.piyin,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ],
+                        )),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text("Meaning:",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                              ),
+                              textAlign: TextAlign.right),
+                          Text(
+                            widget.chineseCard.meaning,
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ])
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RaisedButton(
-                      color: Colors.white,
+                      textColor: Colors.white,
+                      color: Colors.red,
                       onPressed: () {
                         handleClick();
                       },
                       child: Text("Bad"),
                     ),
                     RaisedButton(
-                      color: Colors.white,
+                      textColor: Colors.white,
+                      color: Colors.blue,
                       onPressed: () {
                         handleClick();
                       },
                       child: Text("Maybe"),
                     ),
                     RaisedButton(
-                      color: Colors.white,
+                      textColor: Colors.white,
+                      color: Colors.green,
                       onPressed: () {
                         handleClick();
                       },

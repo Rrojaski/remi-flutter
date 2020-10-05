@@ -21,57 +21,64 @@ class Card1State extends State<Card1> {
             builder: (context) => CardDefinition(chineseCard: chineseCard)));
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        height: 450.0,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              widget.chineseCard.character,
-              style: TextStyle(fontSize: 120.0),
-            ),
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Meaning',
-                        ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return '';
+    return Form(
+        key: _formKey,
+        child: Container(
+            width: double.infinity,
+            height: 450.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  widget.chineseCard.character,
+                  style: TextStyle(fontSize: 120.0),
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                          margin: const EdgeInsets.only(bottom: 30),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: 'Piyin',
+                            ),
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter piyin';
+                              }
+                              return null;
+                            },
+                          )),
+                      Container(
+                          margin: const EdgeInsets.only(bottom: 30),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: 'Meaning',
+                            ),
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter meaning';
+                              }
+                              return null;
+                            },
+                          )),
+                      RaisedButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            handleClick(widget.chineseCard);
                           }
-                          return null;
+                          ;
                         },
-                      )),
-                  Container(
-                      margin: const EdgeInsets.only(bottom: 30),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Piyin',
-                        ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      )),
-                  RaisedButton(
-                    color: Colors.white,
-                    onPressed: () {
-                      handleClick(widget.chineseCard);
-                    },
-                    child: Text("Submit"),
-                  ),
-                ])
-          ],
-        ));
+                        child: Text("Submit"),
+                      ),
+                    ])
+              ],
+            )));
   }
 }

@@ -33,8 +33,10 @@ class Card2State extends State<Card2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Image.asset('assets/images/water.png', height: 180),
+                  Image.asset('assets/images/' + widget.chineseCard.image,
+                      width: 180, height: 180),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         widget.chineseCard.piyin,
