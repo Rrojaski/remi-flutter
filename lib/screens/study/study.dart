@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import "package:http/http.dart" as http;
+import 'dart:math';
+import 'dart:convert';
 import 'components/card_1.dart';
 import 'components/card_2.dart';
-import 'components/card_definition.dart';
-import 'dart:math';
 import '../../models/Chinese_Card.model.dart';
 
 class StudyScreen extends StatefulWidget {
   final int randomCardTypeNumber = getRandomNumber(2);
-  final int randomCardNumber = getRandomNumber(9);
+  final int randomCardNumber = getRandomNumber(5);
 
-  final List<ChineseCard> cardList = [
+  List<ChineseCard> cardList = [
     new ChineseCard(
         character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
     new ChineseCard(
@@ -25,7 +26,7 @@ class StudyScreen extends StatefulWidget {
     new ChineseCard(
         character: "北京",
         meaning: "beijing",
-        piyin: "pīn​yīn​",
+        piyin: "běijīng",
         image: 'beijing.jpg'),
     new ChineseCard(
         character: "再見",
@@ -56,6 +57,30 @@ getRandomNumber(int maxNumber) {
 }
 
 class StudyScreenState extends State<StudyScreen> {
+  String url = "https://remi20200913113417.azurewebsites.net/api/cards";
+  Future<List<ChineseCard>> getCards() async {
+    var response = await http.get(Uri.encodeFull(url));
+    List list = jsonDecode(response.body);
+    print("list: ");
+    print(list);
+    var mappedList = list.map((element) {
+      return new ChineseCard(
+          id: element['id'],
+          character: element['character'],
+          meaning: element['meaning'],
+          piyin: element['piyin'],
+          image: "water.png");
+    });
+
+    return mappedList.toList();
+  }
+
+  @override
+  void initState() {
+    getCards().then((value) => widget.cardList = value);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> children = new List.generate(
