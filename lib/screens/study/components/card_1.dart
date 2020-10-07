@@ -31,53 +31,39 @@ class Card1State extends State<Card1> {
             width: double.infinity,
             height: 450.0,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   widget.chineseCard.character,
                   style: TextStyle(fontSize: 120.0),
                 ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Container(
-                          margin: const EdgeInsets.only(bottom: 30),
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              hintText: 'Piyin',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter piyin';
-                              }
-                              return null;
-                            },
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(bottom: 30),
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              hintText: 'Meaning',
-                            ),
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter meaning';
-                              }
-                              return null;
-                            },
-                          )),
-                      RaisedButton(
-                        color: Colors.white,
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            handleClick(widget.chineseCard);
-                          }
-                          ;
-                        },
-                        child: Text("Submit"),
-                      ),
-                    ])
+                Column(children: <Widget>[
+                  Container(
+                      margin: const EdgeInsets.only(bottom: 30),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Piyin',
+                        ),
+                      )),
+                  Container(
+                      margin: const EdgeInsets.only(bottom: 30),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: 'Meaning',
+                        ),
+                      )),
+                  RaisedButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        handleClick(widget.chineseCard);
+                      }
+                      ;
+                    },
+                    child: Text("Submit"),
+                  ),
+                ]),
               ],
             )));
   }
