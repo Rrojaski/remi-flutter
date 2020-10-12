@@ -10,6 +10,7 @@ class StudyScreen extends StatefulWidget {
   int randomCardNumber = getRandomNumber(5);
 
   List<ChineseCard> cardList = [
+    //
     // new ChineseCard(
     //     character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
     // new ChineseCard(
