@@ -10,40 +10,39 @@ class StudyScreen extends StatefulWidget {
   int randomCardNumber = getRandomNumber(5);
 
   List<ChineseCard> cardList = [
-    //
-    // new ChineseCard(
-    //     character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
-    // new ChineseCard(
-    //     character: "頻果",
-    //     meaning: "apple",
-    //     piyin: "píngguǒ",
-    //     image: 'apple.png'),
-    // new ChineseCard(
-    //     character: "西瓜",
-    //     meaning: "watermelon",
-    //     piyin: "xīguā",
-    //     image: 'watermelon.png'),
-    // new ChineseCard(
-    //     character: "北京",
-    //     meaning: "beijing",
-    //     piyin: "běijīng",
-    //     image: 'beijing.jpg'),
-    // new ChineseCard(
-    //     character: "再見",
-    //     meaning: "goodbye",
-    //     piyin: "zàijiàn",
-    //     image: 'goodbye.jpg'),
-    // new ChineseCard(
-    //     character: "後面",
-    //     meaning: "behind",
-    //     piyin: "hòumiàn",
-    //     image: 'behind.jpg'),
-    // new ChineseCard(
-    //     character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
-    // new ChineseCard(
-    //     character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
-    // new ChineseCard(
-    //     character: "冷", meaning: "cold", piyin: "lěng", image: 'cold.PNG')
+    new ChineseCard(
+        character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
+    new ChineseCard(
+        character: "頻果",
+        meaning: "apple",
+        piyin: "píngguǒ",
+        image: 'apple.png'),
+    new ChineseCard(
+        character: "西瓜",
+        meaning: "watermelon",
+        piyin: "xīguā",
+        image: 'watermelon.png'),
+    new ChineseCard(
+        character: "北京",
+        meaning: "beijing",
+        piyin: "běijīng",
+        image: 'beijing.jpg'),
+    new ChineseCard(
+        character: "再見",
+        meaning: "goodbye",
+        piyin: "zàijiàn",
+        image: 'goodbye.jpg'),
+    new ChineseCard(
+        character: "後面",
+        meaning: "behind",
+        piyin: "hòumiàn",
+        image: 'behind.jpg'),
+    new ChineseCard(
+        character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
+    new ChineseCard(
+        character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
+    new ChineseCard(
+        character: "冷", meaning: "cold", piyin: "lěng", image: 'cold.PNG')
   ];
 
   @override
