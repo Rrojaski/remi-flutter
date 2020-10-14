@@ -38,6 +38,11 @@ class StudyScreen extends StatefulWidget {
         piyin: "hòumiàn",
         image: 'behind.jpg'),
     new ChineseCard(
+        character: "喜歡",
+        meaning: "to like",
+        piyin: "xǐhuān",
+        image: 'water.jpg'),
+    new ChineseCard(
         character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
     new ChineseCard(
         character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
