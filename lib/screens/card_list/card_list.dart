@@ -17,7 +17,8 @@ class CardListState extends State<CardListScreen> {
     new ChineseCard(character: "家", meaning: "yesterday", piyin: "family"),
     new ChineseCard(character: "熱", meaning: "hot", piyin: "rè"),
     new ChineseCard(
-        character: "程序猿", meaning: "programmer", piyin: "chéngxù yuán")
+        character: "程序猿", meaning: "programmer", piyin: "chéngxù yuán"),
+    new ChineseCard(character: "明天", meaning: "tomorrow", piyin: "míngtiān")
   ];
 
   @override
