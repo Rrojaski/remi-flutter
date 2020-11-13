@@ -24,11 +24,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: any
+  rxdart: ^0.24.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.8.0"
+  flutter_colorpicker: any
 
 flutter_icons:
   android: "launcher_icon"

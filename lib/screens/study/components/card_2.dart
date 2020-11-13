@@ -2,6 +2,7 @@ import 'package:REMI/screens/study/components/card_definition.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
 import 'package:REMI/screens/study/components/card_definition.dart';
+import './canvas.dart';
 
 class Card2 extends StatefulWidget {
   Card2({Key key, this.chineseCard}) : super(key: key);
@@ -51,16 +52,17 @@ class Card2State extends State<Card2> {
                 ],
               ),
               Container(
-                height: 280,
-                width: 280,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-                    left: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-                    right: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-                    bottom: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-                  ),
-                ),
+                height: 290,
+                width: 290,
+                // decoration: const BoxDecoration(
+                //   border: Border(
+                //     top: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+                //     left: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+                //     right: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+                //     bottom: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+                //   ),
+                // ),
+                child: new Draw(),
               ),
               RaisedButton(
                 color: Colors.white,

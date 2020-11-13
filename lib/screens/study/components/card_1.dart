@@ -1,7 +1,6 @@
 import 'package:REMI/screens/study/components/card_definition.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
-import 'package:REMI/screens/study/components/card_definition.dart';
 
 class Card1 extends StatefulWidget {
   Card1({Key key, this.chineseCard}) : super(key: key);
