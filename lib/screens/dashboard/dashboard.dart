@@ -22,7 +22,12 @@ class DashboardScreen extends StatelessWidget {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(top: 80.0, bottom: 50.0),
-                  child: Text("Card Proggress"),
+                  child: Text(
+                    "Card Proggress",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 20.0,

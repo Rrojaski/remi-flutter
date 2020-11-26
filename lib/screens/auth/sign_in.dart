@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../dashboard/dashboard.dart';
+import 'package:flutter/cupertino.dart';
 // import 'package:http/http.dart' as http;
 
 class SignInScreen extends StatelessWidget {
@@ -30,11 +31,16 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                        margin: const EdgeInsets.only(bottom: 30),
-                        child: Image.asset(
-                          'assets/images/kawai_girl.png',
-                          height: 200,
-                        )),
+                      margin: const EdgeInsets.only(bottom: 30),
+                      child: Icon(
+                        CupertinoIcons.person_solid,
+                        size: 200.0,
+                      ),
+                      //  Image.asset(
+                      //   'assets/images/kawai_girl.png',
+                      //   height: 200,
+                      // )),
+                    ),
                     Container(
                         margin: const EdgeInsets.only(bottom: 0),
                         child: TextFormField(
