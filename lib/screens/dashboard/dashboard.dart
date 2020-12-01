@@ -23,7 +23,7 @@ class DashboardScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 80.0, bottom: 50.0),
                   child: Text(
-                    "Card Proggress",
+                    "Card Proggress Bar",
                     style: TextStyle(
                       fontSize: 20,
                     ),
