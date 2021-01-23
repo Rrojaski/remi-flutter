@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896571612498",
+    "project_id": "remi-flutter",
+    "storage_bucket": "remi-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896571612498:android:ce78b3dafc1d206d35ee8b",
+        "android_client_info": {
+          "package_name": "com.example.remiflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896571612498-01ihann2ut2vvdfe8fa286qiok0ohkok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhe0Cckc-cY6_VC8jh_L6qts3qlhXAA6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896571612498-01ihann2ut2vvdfe8fa286qiok0ohkok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
