@@ -58,7 +58,6 @@ class Card1State extends State<Card1> {
                       if (_formKey.currentState.validate()) {
                         handleClick(widget.chineseCard);
                       }
-                      ;
                     },
                     child: Text("Submit"),
                   ),

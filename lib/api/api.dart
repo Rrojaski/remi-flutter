@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import '../models/Chinese_Card.model.dart';
-
-String url = "https://remi20200913113417.azurewebsites.net/api/cards";
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class API {
   static Future<List<dynamic>> getCards() async {
-    var response = await http.get(Uri.encodeFull(url));
-    if (response == null) return List();
-    return jsonDecode(response.body);
+    Query query = FirebaseFirestore.instance.collection('notes');
+    List list = new List();
+    await query.get().then((querySnapshot) async {
+      querySnapshot.docs.forEach((e) => {list.add(e.data())});
+    });
+    return list;
   }
 }

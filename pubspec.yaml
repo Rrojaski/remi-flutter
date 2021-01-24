@@ -27,8 +27,8 @@ dependencies:
   rxdart: ^0.24.1
 
     # Check that you have this dependency (added in the previous step)
-  firebase_core: ^0.4.0+9
-
+  firebase_core: ^0.7.0
+  cloud_firestore: ^0.16.0
 
 dev_dependencies:
   flutter_test:
