@@ -1,7 +1,6 @@
 import 'package:REMI/screens/study/components/card_definition.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
-import 'package:REMI/screens/study/components/card_definition.dart';
 import './canvas.dart';
 
 class Card2 extends StatefulWidget {

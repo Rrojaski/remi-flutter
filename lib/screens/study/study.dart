@@ -9,51 +9,52 @@ class StudyScreen extends StatefulWidget {
   final int randomCardTypeNumber = getRandomNumber(2);
   int randomCardNumber = getRandomNumber(5);
 
-  List<ChineseCard> cardList = [
-    new ChineseCard(
-        character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
-    new ChineseCard(
-        character: "頻果",
-        meaning: "apple",
-        piyin: "píngguǒ",
-        image: 'apple.png'),
-    new ChineseCard(
-        character: "西瓜",
-        meaning: "watermelon",
-        piyin: "xīguā",
-        image: 'watermelon.png'),
-    new ChineseCard(
-        character: "北京",
-        meaning: "beijing",
-        piyin: "běijīng",
-        image: 'beijing.jpg'),
-    new ChineseCard(
-        character: "再見",
-        meaning: "goodbye",
-        piyin: "zàijiàn",
-        image: 'goodbye.jpg'),
-    new ChineseCard(
-        character: "謝謝",
-        meaning: "goodbye",
-        piyin: "xièxie",
-        image: 'water.jpg'),
-    new ChineseCard(
-        character: "後面",
-        meaning: "behind",
-        piyin: "hòumiàn",
-        image: 'behind.jpg'),
-    new ChineseCard(
-        character: "喜歡",
-        meaning: "to like",
-        piyin: "xǐhuān",
-        image: 'water.jpg'),
-    new ChineseCard(
-        character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
-    new ChineseCard(
-        character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
-    new ChineseCard(
-        character: "冷", meaning: "cold", piyin: "lěng", image: 'cold.PNG')
-  ];
+  List<ChineseCard> cardList = [];
+  // [
+  //   new ChineseCard(
+  //       character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
+  //   new ChineseCard(
+  //       character: "頻果",
+  //       meaning: "apple",
+  //       piyin: "píngguǒ",
+  //       image: 'apple.png'),
+  //   new ChineseCard(
+  //       character: "西瓜",
+  //       meaning: "watermelon",
+  //       piyin: "xīguā",
+  //       image: 'watermelon.png'),
+  //   new ChineseCard(
+  //       character: "北京",
+  //       meaning: "beijing",
+  //       piyin: "běijīng",
+  //       image: 'beijing.jpg'),
+  //   new ChineseCard(
+  //       character: "再見",
+  //       meaning: "goodbye",
+  //       piyin: "zàijiàn",
+  //       image: 'goodbye.jpg'),
+  //   new ChineseCard(
+  //       character: "謝謝",
+  //       meaning: "goodbye",
+  //       piyin: "xièxie",
+  //       image: 'water.jpg'),
+  //   new ChineseCard(
+  //       character: "後面",
+  //       meaning: "behind",
+  //       piyin: "hòumiàn",
+  //       image: 'behind.jpg'),
+  //   new ChineseCard(
+  //       character: "喜歡",
+  //       meaning: "to like",
+  //       piyin: "xǐhuān",
+  //       image: 'water.jpg'),
+  //   new ChineseCard(
+  //       character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
+  //   new ChineseCard(
+  //       character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
+  //   new ChineseCard(
+  //       character: "冷", meaning: "cold", piyin: "lěng", image: 'cold.PNG')
+  // ];
 
   @override
   createState() => new StudyScreenState();
@@ -67,7 +68,7 @@ getRandomNumber(int maxNumber) {
 
 class StudyScreenState extends State<StudyScreen> {
   _getCards() {
-    if (widget.cardList.length > 0) return;
+    // if (widget.cardList.length > 0) return;
     API.getCards().then((value) => {
           setState(() {
             var mappedList = value.map((element) {
@@ -76,6 +77,7 @@ class StudyScreenState extends State<StudyScreen> {
                   character: element['character'],
                   meaning: element['meaning'],
                   piyin: element['piyin'],
+                  rating: element['rating'],
                   image: "water.png");
             });
             widget.cardList = mappedList.toList();
@@ -89,8 +91,6 @@ class StudyScreenState extends State<StudyScreen> {
     _getCards();
     super.initState();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
