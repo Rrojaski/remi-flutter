@@ -1,4 +1,4 @@
-import 'package:REMI/screens/study/study.dart';
+import 'package:REMI/screens/study/containers/study.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
 

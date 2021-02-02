@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'components/card_1.dart';
-import 'components/card_2.dart';
-import '../../models/Chinese_Card.model.dart';
-import '../../api/api.dart';
+import '../components/card_1.dart';
+import '../components/card_2.dart';
+import '../../../models/Chinese_Card.model.dart';
+import '../../../api/api.dart';
+import '../../../components/primary_app_bar/primary_app_bar.dart';
 
 class StudyScreen extends StatefulWidget {
-  final int randomCardTypeNumber = getRandomNumber(2);
+  int randomCardTypeNumber = getRandomNumber(2);
   int randomCardNumber = getRandomNumber(5);
 
   List<ChineseCard> cardList = [];
@@ -95,27 +96,20 @@ class StudyScreenState extends State<StudyScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children;
-    if (widget.cardList.length > 0) {
-      children = new List.generate(
-          1,
-          (int i) => widget.randomCardTypeNumber == 1
-              ? new Card1(chineseCard: widget.cardList[widget.randomCardNumber])
-              : new Card2(
-                  chineseCard: widget.cardList[widget.randomCardNumber]));
-    } else {
-      children =
-          new List.generate(1, (int i) => new CircularProgressIndicator());
-    }
+
+    children = widget.cardList.length > 0
+        ? new List.generate(
+            1,
+            (int i) => widget.randomCardTypeNumber == 1
+                ? new Card1(
+                    chineseCard: widget.cardList[widget.randomCardNumber])
+                : new Card2(
+                    chineseCard: widget.cardList[widget.randomCardNumber]))
+        : new List.generate(1, (int i) => new CircularProgressIndicator());
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.white, //change your color here
-            ),
-            title: Text(
-              "Study",
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            )),
+        appBar: getPrimaryAppBar("Study"),
         body: Container(
             margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
             width: double.infinity,
