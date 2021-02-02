@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../card_list/card_list.dart';
-import '../study/study.dart';
+import '../card_list/containers/card_list.dart';
+import '../study/containers/study.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
