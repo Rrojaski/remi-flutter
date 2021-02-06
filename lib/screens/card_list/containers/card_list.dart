@@ -12,8 +12,8 @@ class CardListScreen extends StatefulWidget {
 class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [];
 
-  @override
-  void initState() {
+
+  getCards() {
     API.getCards().then((value) => {
           setState(() {
             var mappedList = value.map((element) {
@@ -28,6 +28,11 @@ class CardListState extends State<CardListScreen> {
             cardList = mappedList.toList();
           })
         });
+  }
+
+  @override
+  void initState() {
+    getCards();
     super.initState();
   }
 
@@ -47,12 +52,13 @@ class CardListState extends State<CardListScreen> {
                   RaisedButton(
                     color: Colors.blue,
                     textColor: Colors.white,
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      final result = await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => AddCardScreen()),
                       );
+                        getCards();
                     },
                     child: Text("Add"),
                   )
