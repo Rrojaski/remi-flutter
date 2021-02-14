@@ -30,38 +30,43 @@ class Card2State extends State<Card2> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // Image.asset('assets/images/' + widget.chineseCard.image,
-                  //     width: 180, height: 180),
-                      Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Piyin:",
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                      Text(
-                        "Meaning:",
-                        style: TextStyle(fontSize: 20.0),
-                      )
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.chineseCard.piyin,
-                        style: TextStyle(fontSize: 20.0),
-                      ),
-                      Text(
-                        widget.chineseCard.meaning,
-                        style: TextStyle(fontSize: 20.0),
-                      )
-                    ],
-                  )
-                ],
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    // Image.asset('assets/images/' + widget.chineseCard.image,
+                    //     width: 180, height: 180),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Piyin:",
+                          style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                        ),
+                        Text(
+                          widget.chineseCard.piyin,
+                          style: TextStyle(
+                              fontSize: 40.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Meaning:",
+                          style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                        ),
+                        Text(
+                          widget.chineseCard.meaning,
+                          style: TextStyle(
+                              fontSize: 40.0, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
               Container(
                 height: 290,

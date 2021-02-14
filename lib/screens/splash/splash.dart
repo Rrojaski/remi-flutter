@@ -21,10 +21,7 @@ class SplashScreen extends StatelessWidget {
               RaisedButton(
                 color: Colors.white,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInScreen()),
-                  );
+                  Navigator.pushReplacementNamed(context, "/signIn");
                 },
                 child: Text("Get Started"),
               )
