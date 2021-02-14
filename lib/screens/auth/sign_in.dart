@@ -5,10 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 class SignInScreen extends StatelessWidget {
   Future<void> signIn(context) async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => DashboardScreen()),
-    );
+    Navigator.pushReplacementNamed(context, "/dashboard");
     // var json = jsonEncode({'id': 1, 'name': 'adam'});
     // const url = 'https://jsonplaceholder.typicode.com/posts';
     // var reponse = await http.post(url,

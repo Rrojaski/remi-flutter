@@ -12,7 +12,6 @@ class CardListScreen extends StatefulWidget {
 class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [];
 
-
   getCards() {
     API.getCards().then((value) => {
           setState(() {
@@ -44,27 +43,6 @@ class CardListState extends State<CardListScreen> {
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  RaisedButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    onPressed: () async {
-                      final result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddCardScreen()),
-                      );
-                        getCards();
-                    },
-                    child: Text("Add"),
-                  )
-                ],
-              ),
-            ),
             Expanded(
                 child: SizedBox(
                     height: 200.0,
