@@ -1,5 +1,5 @@
 class ChineseCard {
-  final int id;
+  final String id;
   final String character;
   final String meaning;
   final String piyin;

@@ -1,4 +1,3 @@
-import 'package:REMI/screens/add_card/add_card.dart';
 import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
 import '../../../api/api.dart';
@@ -15,17 +14,28 @@ class CardListState extends State<CardListScreen> {
   getCards() {
     API.getCards().then((value) => {
           setState(() {
-            var mappedList = value.map((element) {
+            var mappedList = value.map((document) {
+              Map data = document.data();
               return new ChineseCard(
-                  id: element['id'],
-                  character: element['character'],
-                  meaning: element['meaning'],
-                  piyin: element['piyin'],
-                  rating: element['rating'],
+                  id: document.id,
+                  character: data['character'],
+                  meaning: data['meaning'],
+                  piyin: data['piyin'],
+                  rating: data['rating'],
                   image: "water.png");
             });
             cardList = mappedList.toList();
           })
+        });
+  }
+
+  deleteCard(String id, int index) {
+    API.deleteCard(id).then((value) => {
+          print('Delete Success, remve index: $index'),
+          if (value)
+            {
+              setState(() => {cardList.removeAt(index)})
+            }
         });
   }
 
@@ -52,12 +62,22 @@ class CardListState extends State<CardListScreen> {
                         itemBuilder: (context, index) {
                           return Card(
                               child: ListTile(
-                                  leading: Text(
-                                    cardList[index].character,
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  title: Text(cardList[index].piyin),
-                                  subtitle: Text(cardList[index].meaning)));
+                            leading: Text(
+                              cardList[index].character,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            title: Text(cardList[index].piyin),
+                            subtitle: Text(cardList[index].meaning),
+                            trailing: IconButton(
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Colors.grey,
+                                  size: 20.0,
+                                ),
+                                onPressed: () {
+                                  deleteCard(cardList[index].id, index);
+                                }),
+                          ));
                         },
                       ),
                     ))),
