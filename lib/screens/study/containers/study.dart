@@ -72,13 +72,14 @@ class StudyScreenState extends State<StudyScreen> {
     // if (widget.cardList.length > 0) return;
     API.getCards().then((value) => {
           setState(() {
-            var mappedList = value.map((element) {
+            var mappedList = value.map((document) {
+              Map data = document.data();
               return new ChineseCard(
-                  id: element['id'],
-                  character: element['character'],
-                  meaning: element['meaning'],
-                  piyin: element['piyin'],
-                  rating: element['rating'],
+                  id: document.id,
+                  character: data['character'],
+                  meaning: data['meaning'],
+                  piyin: data['piyin'],
+                  rating: data['rating'],
                   image: "water.png");
             });
             widget.cardList = mappedList.toList();
