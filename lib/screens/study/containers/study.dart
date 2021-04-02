@@ -5,6 +5,7 @@ import '../components/card_2.dart';
 import '../../../models/Chinese_Card.model.dart';
 import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StudyScreen extends StatefulWidget {
   int randomCardTypeNumber = getRandomNumber(2);
@@ -68,24 +69,22 @@ getRandomNumber(int maxNumber) {
 }
 
 class StudyScreenState extends State<StudyScreen> {
-  _getCards() {
-    // if (widget.cardList.length > 0) return;
-    API.getCards().then((value) => {
-          setState(() {
-            var mappedList = value.map((document) {
-              Map data = document.data();
-              return new ChineseCard(
-                  id: document.id,
-                  character: data['character'],
-                  meaning: data['meaning'],
-                  piyin: data['piyin'],
-                  rating: data['rating'],
-                  image: "water.png");
-            });
-            widget.cardList = mappedList.toList();
-            widget.randomCardNumber = getRandomNumber(widget.cardList.length);
-          })
-        });
+  _getCards() async {
+    List<QueryDocumentSnapshot> cardListToMap = await API.getCards();
+
+    setState(() {
+      widget.cardList = cardListToMap.map((document) {
+        Map data = document.data();
+        return new ChineseCard(
+            id: document.id,
+            character: data['character'],
+            meaning: data['meaning'],
+            piyin: data['piyin'],
+            rating: data['rating'],
+            image: "water.png");
+      }).toList();
+      widget.randomCardNumber = getRandomNumber(widget.cardList.length);
+    });
   }
 
   @override
