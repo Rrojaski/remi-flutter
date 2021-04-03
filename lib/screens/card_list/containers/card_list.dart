@@ -13,6 +13,11 @@ class CardListScreen extends StatefulWidget {
 class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [];
 
+  void _handleAddCardClick() {
+    print('Getting cards again');
+    getCards();
+  }
+
   /// Get Cards from api and set the state
   getCards() async {
     List<QueryDocumentSnapshot> cardListToMap = await API.getCards();
@@ -51,7 +56,7 @@ class CardListState extends State<CardListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getPrimaryAppBar("Card List"),
-      bottomNavigationBar: PrimaryBottomNav(),
+      bottomNavigationBar: PrimaryBottomNav(_handleAddCardClick),
       body: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,
