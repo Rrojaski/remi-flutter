@@ -155,31 +155,31 @@ class _DrawState extends State<Draw> {
     }
     Widget colorPicker = GestureDetector(
       onTap: () {
-        showDialog(
-          context: context,
-          child: AlertDialog(
-            title: const Text('Pick a color!'),
-            content: SingleChildScrollView(
-              child: ColorPicker(
-                pickerColor: pickerColor,
-                onColorChanged: (color) {
-                  pickerColor = color;
-                },
-                enableAlpha: true,
-                pickerAreaHeightPercent: 0.8,
-              ),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: const Text('Save'),
-                onPressed: () {
-                  setState(() => selectedColor = pickerColor);
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
-        );
+        // showDialog(
+        //   context: context,
+        //   child: AlertDialog(
+        //     title: const Text('Pick a color!'),
+        //     content: SingleChildScrollView(
+        //       child: ColorPicker(
+        //         pickerColor: pickerColor,
+        //         onColorChanged: (color) {
+        //           pickerColor = color;
+        //         },
+        //         enableAlpha: true,
+        //         pickerAreaHeightPercent: 0.8,
+        //       ),
+        //     ),
+        //     actions: <Widget>[
+        //       FlatButton(
+        //         child: const Text('Save'),
+        //         onPressed: () {
+        //           setState(() => selectedColor = pickerColor);
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // );
       },
       child: ClipOval(
         child: Container(

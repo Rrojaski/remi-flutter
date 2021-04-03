@@ -50,6 +50,11 @@ class AddCardState extends State<AddCardScreen> {
 
     if (addSuccess) {
       clearControllers();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Card Added!'),
+        ),
+      );
     }
   }
 

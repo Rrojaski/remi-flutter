@@ -43,6 +43,11 @@ class CardListState extends State<CardListScreen> {
 
     if (deleteSuccess) {
       setState(() => {cardList.removeAt(index)});
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Card Deleted!'),
+        ),
+      );
     }
   }
 
