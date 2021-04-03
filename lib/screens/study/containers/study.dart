@@ -7,28 +7,42 @@ import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class StudyScreen extends StatefulWidget {
-  int randomCardTypeNumber = getRandomNumber(2);
-  int randomCardNumber = getRandomNumber(5);
+getRandomNumber(int maxNumber, [int lastCardNumber]) {
+  int randomNumber;
 
-  List<ChineseCard> cardList = [];
+  do {
+    Random random = new Random();
+    randomNumber = random.nextInt(maxNumber);
+  } while (lastCardNumber == randomNumber);
+
+  return randomNumber;
+}
+
+class StudyScreen extends StatefulWidget {
+  /// forcedRefresh used to rerender without making another api call
+  final bool forcedRefresh;
+
+  StudyScreen([this.forcedRefresh = false]);
 
   @override
   createState() => new StudyScreenState();
 }
 
-getRandomNumber(int maxNumber) {
-  Random random = new Random();
-  int randomNumber = random.nextInt(maxNumber);
-  return randomNumber;
-}
-
 class StudyScreenState extends State<StudyScreen> {
-  _getCards() async {
-    List<QueryDocumentSnapshot> cardListToMap = await API.getCards();
+  int randomCardTypeNumber = getRandomNumber(2);
+  int randomCardNumber = getRandomNumber(5);
+
+  List<ChineseCard> cardList = [];
+
+  int lastCardNumber;
+
+  /// Get list of cards
+  void _getCards() async {
+    List<QueryDocumentSnapshot> cardListToMap =
+        await API.getCards(!widget.forcedRefresh);
 
     setState(() {
-      widget.cardList = cardListToMap.map((document) {
+      cardList = cardListToMap.map((document) {
         Map data = document.data();
         return new ChineseCard(
             id: document.id,
@@ -38,8 +52,19 @@ class StudyScreenState extends State<StudyScreen> {
             rating: data['rating'],
             image: "water.png");
       }).toList();
-      widget.randomCardNumber = getRandomNumber(widget.cardList.length);
+      randomCardNumber = getRandomNumber(cardList.length);
     });
+  }
+
+  /// Get Random card to displau
+  List<Widget> _getCardDisplay() {
+    return cardList.length > 0
+        ? new List.generate(
+            1,
+            (int i) => randomCardTypeNumber == 1
+                ? new Card1(chineseCard: cardList[randomCardNumber])
+                : new Card2(chineseCard: cardList[randomCardNumber]))
+        : new List.generate(1, (int i) => new CircularProgressIndicator());
   }
 
   @override
@@ -50,18 +75,6 @@ class StudyScreenState extends State<StudyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children;
-
-    children = widget.cardList.length > 0
-        ? new List.generate(
-            1,
-            (int i) => widget.randomCardTypeNumber == 1
-                ? new Card1(
-                    chineseCard: widget.cardList[widget.randomCardNumber])
-                : new Card2(
-                    chineseCard: widget.cardList[widget.randomCardNumber]))
-        : new List.generate(1, (int i) => new CircularProgressIndicator());
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: getPrimaryAppBar("Study"),
@@ -72,7 +85,7 @@ class StudyScreenState extends State<StudyScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: children,
+              children: _getCardDisplay(),
             )));
   }
 }

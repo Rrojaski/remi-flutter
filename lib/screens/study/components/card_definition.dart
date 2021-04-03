@@ -14,7 +14,7 @@ class CardDefinitionState extends State<CardDefinition> {
     Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => StudyScreen(),
+          pageBuilder: (_, __, ___) => StudyScreen(true),
           transitionDuration: Duration(seconds: 0),
         ));
   }
