@@ -3,6 +3,7 @@ import '../../../models/Chinese_Card.model.dart';
 import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:REMI/components/primary_bottom_nav/primary_bottom_nav.dart';
 
 class CardListScreen extends StatefulWidget {
   @override
@@ -50,6 +51,7 @@ class CardListState extends State<CardListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getPrimaryAppBar("Card List"),
+      bottomNavigationBar: PrimaryBottomNav(),
       body: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:REMI/screens/add_card/add_card.dart';
 import 'package:REMI/screens/card_list/containers/card_list.dart';
+import 'package:REMI/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryBottomNav extends StatefulWidget {
@@ -29,7 +30,15 @@ class PrimaryBottomNavState extends State<PrimaryBottomNav> {
                         color: Colors.grey,
                         size: 40.0,
                       ),
-                      onPressed: null),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => DashboardScreen(),
+                            transitionDuration: Duration(seconds: 0),
+                          ),
+                        );
+                      }),
                   ClipOval(
                     child: Material(
                       color: Colors.blue, // button color
@@ -58,10 +67,13 @@ class PrimaryBottomNavState extends State<PrimaryBottomNav> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CardListScreen()));
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => CardListScreen(),
+                            transitionDuration: Duration(seconds: 0),
+                          ),
+                        );
                       }),
                 ])));
   }

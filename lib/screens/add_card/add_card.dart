@@ -43,15 +43,13 @@ class AddCardState extends State<AddCardScreen> {
   }
 
   /// Submit form to api
-  addCard() {
-    print(characterControler.text);
-    if (hasRequriedFields()) {
-      API
-          .addCard(characterControler.text, piyinControler.text,
-              meaningControler.text)
-          .then((value) => {
-                if (value) {clearControllers()}
-              });
+  addCard() async {
+    if (!hasRequriedFields()) return;
+    bool addSuccess = await API.addCard(
+        characterControler.text, piyinControler.text, meaningControler.text);
+
+    if (addSuccess) {
+      clearControllers();
     }
   }
 

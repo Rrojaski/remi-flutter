@@ -13,11 +13,12 @@ class Card1 extends StatefulWidget {
 
 class Card1State extends State<Card1> {
   handleClick(ChineseCard chineseCard) {
-    Navigator.pop(context);
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) => CardDefinition(chineseCard: chineseCard)));
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => CardDefinition(chineseCard: chineseCard),
+          transitionDuration: Duration(seconds: 0),
+        ));
   }
 
   final _formKey = GlobalKey<FormState>();

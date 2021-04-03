@@ -14,11 +14,12 @@ class Card2 extends StatefulWidget {
 
 class Card2State extends State<Card2> {
   handleClick(ChineseCard chineseCard) {
-    Navigator.pop(context);
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) => CardDefinition(chineseCard: chineseCard)));
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => CardDefinition(chineseCard: chineseCard),
+          transitionDuration: Duration(seconds: 0),
+        ));
   }
 
   @override
