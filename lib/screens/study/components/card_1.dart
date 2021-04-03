@@ -40,16 +40,18 @@ class Card1State extends State<Card1> {
                 ),
                 Column(children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           hintText: 'Piyin',
                         ),
                       )),
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           hintText: 'Meaning',
                         ),
                       )),

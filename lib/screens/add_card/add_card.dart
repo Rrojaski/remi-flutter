@@ -59,7 +59,7 @@ class AddCardState extends State<AddCardScreen> {
         appBar: getPrimaryAppBar("Add Card"),
         body: Container(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             width: double.infinity,
             height: 450.0,
             child: Column(
@@ -68,26 +68,29 @@ class AddCardState extends State<AddCardScreen> {
               children: <Widget>[
                 Column(children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         controller: characterControler,
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           labelText: 'Character',
                         ),
                       )),
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         controller: piyinControler,
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           labelText: 'Piyin',
                         ),
                       )),
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         controller: meaningControler,
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           labelText: 'Meaning',
                         ),
                       )),

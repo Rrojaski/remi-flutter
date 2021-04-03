@@ -12,14 +12,49 @@ class Card2 extends StatefulWidget {
   createState() => new Card2State();
 }
 
+bool showMeaning = false;
+
 class Card2State extends State<Card2> {
   handleClick(ChineseCard chineseCard) {
+    setState(() {
+      showMeaning = false;
+    });
     Navigator.pushReplacement(
         context,
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => CardDefinition(chineseCard: chineseCard),
           transitionDuration: Duration(seconds: 0),
         ));
+  }
+
+  Widget buildMeaningToogle() {
+    if (!showMeaning) {
+      return Container(
+          margin: EdgeInsets.only(top: 15.0),
+          child: RaisedButton(
+              color: Colors.white,
+              onPressed: () {
+                setState(() {
+                  showMeaning = true;
+                });
+              },
+              child: Text("Meaning",
+                  style:
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))));
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Meaning:",
+          style: TextStyle(fontSize: 15.0, color: Colors.grey),
+        ),
+        Text(
+          widget.chineseCard.meaning,
+          style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+        )
+      ],
+    );
   }
 
   @override
@@ -52,25 +87,12 @@ class Card2State extends State<Card2> {
                         ),
                       ],
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Meaning:",
-                          style: TextStyle(fontSize: 15.0, color: Colors.grey),
-                        ),
-                        Text(
-                          widget.chineseCard.meaning,
-                          style: TextStyle(
-                              fontSize: 40.0, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    )
+                    buildMeaningToogle()
                   ],
                 ),
               ),
               Container(
-                height: 290,
+                height: 400,
                 width: 290,
                 // decoration: const BoxDecoration(
                 //   border: Border(
