@@ -7,7 +7,8 @@ import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-getRandomNumber(int maxNumber, [int lastCardNumber]) {
+/// Get Random number
+int getRandomNumber(int maxNumber, [int lastCardNumber]) {
   int randomNumber;
 
   do {
@@ -32,52 +33,11 @@ class StudyScreen extends StatefulWidget {
 }
 
 class StudyScreenState extends State<StudyScreen> {
-  int randomCardTypeNumber = getRandomNumber(2);
-  int randomCardNumber = getRandomNumber(5);
+  int randomCardTypeIndex = getRandomNumber(2);
 
   List<ChineseCard> cardList = [];
 
-  int lastCardNumber;
-
-  /// Get list of cards
-  void _getCards() async {
-    List<QueryDocumentSnapshot> cardListToMap =
-        await API.getCards(!widget.forcedRefresh);
-
-    setState(() {
-      cardList = cardListToMap.map((document) {
-        Map data = document.data();
-        return new ChineseCard(
-            id: document.id,
-            character: data['character'],
-            meaning: data['meaning'],
-            piyin: data['piyin'],
-            rating: data['rating'],
-            image: "water.png");
-      }).toList();
-    });
-  }
-
-  /// Return random card that is not the last card returned
-  ChineseCard _getRandomCard() {
-    ChineseCard randomCard;
-    do {
-      randomCard = cardList[getRandomNumber(cardList.length)];
-    } while (randomCard.id == widget.lastCardId);
-
-    return randomCard;
-  }
-
-  /// Get Random card to displau
-  List<Widget> _getCardDisplay() {
-    return cardList.length > 0
-        ? new List.generate(
-            1,
-            (int i) => randomCardTypeNumber == 1
-                ? new Card1(chineseCard: _getRandomCard())
-                : new Card2(chineseCard: _getRandomCard()))
-        : new List.generate(1, (int i) => new CircularProgressIndicator());
-  }
+  ChineseCard currentCardDisplayed;
 
   @override
   void initState() {
@@ -99,5 +59,52 @@ class StudyScreenState extends State<StudyScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: _getCardDisplay(),
             )));
+  }
+
+  /// Get list of cards
+  void _getCards() async {
+    List<QueryDocumentSnapshot> cardListToMap =
+        await API.getCards(!widget.forcedRefresh);
+
+    setState(() {
+      cardList = cardListToMap.map((document) {
+        Map data = document.data();
+        return new ChineseCard(
+            id: document.id,
+            character: data['character'],
+            meaning: data['meaning'],
+            piyin: data['piyin'],
+            rating: data['rating'],
+            image: "water.png");
+      }).toList();
+    });
+
+    _setRandomCard();
+  }
+
+  /// Set random card
+  void _setRandomCard() {
+    currentCardDisplayed = _getRandomCard();
+  }
+
+  /// Return random card that is not the last card returned
+  ChineseCard _getRandomCard() {
+    ChineseCard randomCard;
+    do {
+      randomCard = cardList[getRandomNumber(cardList.length)];
+    } while (randomCard.id == widget.lastCardId);
+
+    return randomCard;
+  }
+
+  /// Display spinner or random card type
+  List<Widget> _getCardDisplay() {
+    return (cardList.length > 0 && currentCardDisplayed != null)
+        ? new List.generate(
+            1,
+            (int i) => randomCardTypeIndex == 1
+                ? new Card1(chineseCard: currentCardDisplayed)
+                : new Card2(chineseCard: currentCardDisplayed))
+        : new List.generate(1, (int i) => new CircularProgressIndicator());
   }
 }
