@@ -14,7 +14,7 @@ class CardDefinitionState extends State<CardDefinition> {
     Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => StudyScreen(true),
+          pageBuilder: (_, __, ___) => StudyScreen(true, widget.chineseCard.id),
           transitionDuration: Duration(seconds: 0),
         ));
   }

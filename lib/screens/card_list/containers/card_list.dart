@@ -14,7 +14,6 @@ class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [];
 
   void _handleAddCardClick() {
-    print('Getting cards again');
     getCards();
   }
 

@@ -22,7 +22,10 @@ class StudyScreen extends StatefulWidget {
   /// forcedRefresh used to rerender without making another api call
   final bool forcedRefresh;
 
-  StudyScreen([this.forcedRefresh = false]);
+  /// never show a card twice in a row
+  final String lastCardId;
+
+  StudyScreen([this.forcedRefresh = false, this.lastCardId]);
 
   @override
   createState() => new StudyScreenState();
@@ -52,8 +55,17 @@ class StudyScreenState extends State<StudyScreen> {
             rating: data['rating'],
             image: "water.png");
       }).toList();
-      randomCardNumber = getRandomNumber(cardList.length);
     });
+  }
+
+  /// Return random card that is not the last card returned
+  ChineseCard _getRandomCard() {
+    ChineseCard randomCard;
+    do {
+      randomCard = cardList[getRandomNumber(cardList.length)];
+    } while (randomCard.id == widget.lastCardId);
+
+    return randomCard;
   }
 
   /// Get Random card to displau
@@ -62,8 +74,8 @@ class StudyScreenState extends State<StudyScreen> {
         ? new List.generate(
             1,
             (int i) => randomCardTypeNumber == 1
-                ? new Card1(chineseCard: cardList[randomCardNumber])
-                : new Card2(chineseCard: cardList[randomCardNumber]))
+                ? new Card1(chineseCard: _getRandomCard())
+                : new Card2(chineseCard: _getRandomCard()))
         : new List.generate(1, (int i) => new CircularProgressIndicator());
   }
 
