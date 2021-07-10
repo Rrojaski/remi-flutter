@@ -1,14 +1,22 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+List<QueryDocumentSnapshot> cardList;
+
 class API {
-  static Future<List<QueryDocumentSnapshot>> getCards() async {
-    Query query = FirebaseFirestore.instance.collection('notes');
-    List<QueryDocumentSnapshot> list = new List();
-    await query.get().then((querySnapshot) async {
-      querySnapshot.docs.forEach((e) => {list.add(e)});
-    }).catchError((error) => {print("error: $error")});
-    return list;
+
+  /// Get cards from notes
+  /// Return previous api response if refreshList is false
+  static Future<List<QueryDocumentSnapshot>> getCards(
+      [bool refreshList = true]) async {
+    if (refreshList) {
+      Query query = FirebaseFirestore.instance.collection('notes');
+      await query.get().then((querySnapshot) async {
+        cardList = new List();
+        querySnapshot.docs.forEach((e) => {cardList.add(e)});
+      }).catchError((error) => {print("error: $error")});
+    }
+    return cardList;
   }
 
   static Future<bool> addCard(

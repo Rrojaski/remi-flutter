@@ -13,11 +13,12 @@ class Card1 extends StatefulWidget {
 
 class Card1State extends State<Card1> {
   handleClick(ChineseCard chineseCard) {
-    Navigator.pop(context);
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) => CardDefinition(chineseCard: chineseCard)));
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => CardDefinition(chineseCard: chineseCard),
+          transitionDuration: Duration(seconds: 0),
+        ));
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -39,16 +40,18 @@ class Card1State extends State<Card1> {
                 ),
                 Column(children: <Widget>[
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           hintText: 'Piyin',
                         ),
                       )),
                   Container(
-                      margin: const EdgeInsets.only(bottom: 30),
+                      margin: const EdgeInsets.only(bottom: 25),
                       child: TextFormField(
                         decoration: const InputDecoration(
+                          border: InputBorder.none,
                           hintText: 'Meaning',
                         ),
                       )),

@@ -1,5 +1,6 @@
 import 'package:REMI/constants.dart';
 import 'package:REMI/screens/auth/sign_in.dart';
+import 'package:REMI/screens/card_list/containers/card_list.dart';
 import 'package:REMI/screens/dashboard/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _AppState extends State<App> {
       routes: {
         "/signIn": (_) => new SignInScreen(),
         "/dashboard": (_) => new DashboardScreen(),
+        "/cardList": (_) => new CardListScreen(),
       },
     );
   }

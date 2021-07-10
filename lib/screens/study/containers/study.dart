@@ -5,88 +5,39 @@ import '../components/card_2.dart';
 import '../../../models/Chinese_Card.model.dart';
 import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+/// Get Random number
+int getRandomNumber(int maxNumber, [int lastCardNumber]) {
+  int randomNumber;
+
+  do {
+    Random random = new Random();
+    randomNumber = random.nextInt(maxNumber);
+  } while (lastCardNumber == randomNumber);
+
+  return randomNumber;
+}
 
 class StudyScreen extends StatefulWidget {
-  int randomCardTypeNumber = getRandomNumber(2);
-  int randomCardNumber = getRandomNumber(5);
+  /// forcedRefresh used to rerender without making another api call
+  final bool forcedRefresh;
 
-  List<ChineseCard> cardList = [];
-  // [
-  //   new ChineseCard(
-  //       character: "水", meaning: "water", piyin: "shui", image: 'water.png'),
-  //   new ChineseCard(
-  //       character: "頻果",
-  //       meaning: "apple",
-  //       piyin: "píngguǒ",
-  //       image: 'apple.png'),
-  //   new ChineseCard(
-  //       character: "西瓜",
-  //       meaning: "watermelon",
-  //       piyin: "xīguā",
-  //       image: 'watermelon.png'),
-  //   new ChineseCard(
-  //       character: "北京",
-  //       meaning: "beijing",
-  //       piyin: "běijīng",
-  //       image: 'beijing.jpg'),
-  //   new ChineseCard(
-  //       character: "再見",
-  //       meaning: "goodbye",
-  //       piyin: "zàijiàn",
-  //       image: 'goodbye.jpg'),
-  //   new ChineseCard(
-  //       character: "謝謝",
-  //       meaning: "goodbye",
-  //       piyin: "xièxie",
-  //       image: 'water.jpg'),
-  //   new ChineseCard(
-  //       character: "後面",
-  //       meaning: "behind",
-  //       piyin: "hòumiàn",
-  //       image: 'behind.jpg'),
-  //   new ChineseCard(
-  //       character: "喜歡",
-  //       meaning: "to like",
-  //       piyin: "xǐhuān",
-  //       image: 'water.jpg'),
-  //   new ChineseCard(
-  //       character: "家", meaning: "family", piyin: "jiā", image: 'family.jpg'),
-  //   new ChineseCard(
-  //       character: "熱", meaning: "hot", piyin: "rè", image: 'hot.jpg'),
-  //   new ChineseCard(
-  //       character: "冷", meaning: "cold", piyin: "lěng", image: 'cold.PNG')
-  // ];
+  /// never show a card twice in a row
+  final String lastCardId;
+
+  StudyScreen([this.forcedRefresh = false, this.lastCardId]);
 
   @override
   createState() => new StudyScreenState();
 }
 
-getRandomNumber(int maxNumber) {
-  Random random = new Random();
-  int randomNumber = random.nextInt(maxNumber);
-  return randomNumber;
-}
-
 class StudyScreenState extends State<StudyScreen> {
-  _getCards() {
-    // if (widget.cardList.length > 0) return;
-    API.getCards().then((value) => {
-          setState(() {
-            var mappedList = value.map((document) {
-              Map data = document.data();
-              return new ChineseCard(
-                  id: document.id,
-                  character: data['character'],
-                  meaning: data['meaning'],
-                  piyin: data['piyin'],
-                  rating: data['rating'],
-                  image: "water.png");
-            });
-            widget.cardList = mappedList.toList();
-            widget.randomCardNumber = getRandomNumber(widget.cardList.length);
-          })
-        });
-  }
+  int randomCardTypeIndex = getRandomNumber(2);
+
+  List<ChineseCard> cardList = [];
+
+  ChineseCard currentCardDisplayed;
 
   @override
   void initState() {
@@ -96,18 +47,6 @@ class StudyScreenState extends State<StudyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children;
-
-    children = widget.cardList.length > 0
-        ? new List.generate(
-            1,
-            (int i) => widget.randomCardTypeNumber == 1
-                ? new Card1(
-                    chineseCard: widget.cardList[widget.randomCardNumber])
-                : new Card2(
-                    chineseCard: widget.cardList[widget.randomCardNumber]))
-        : new List.generate(1, (int i) => new CircularProgressIndicator());
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: getPrimaryAppBar("Study"),
@@ -118,7 +57,54 @@ class StudyScreenState extends State<StudyScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: children,
+              children: _getCardDisplay(),
             )));
+  }
+
+  /// Get list of cards
+  void _getCards() async {
+    List<QueryDocumentSnapshot> cardListToMap =
+        await API.getCards(!widget.forcedRefresh);
+
+    setState(() {
+      cardList = cardListToMap.map((document) {
+        Map data = document.data();
+        return new ChineseCard(
+            id: document.id,
+            character: data['character'],
+            meaning: data['meaning'],
+            piyin: data['piyin'],
+            rating: data['rating'],
+            image: "water.png");
+      }).toList();
+    });
+
+    _setRandomCard();
+  }
+
+  /// Set random card
+  void _setRandomCard() {
+    currentCardDisplayed = _getRandomCard();
+  }
+
+  /// Return random card that is not the last card returned
+  ChineseCard _getRandomCard() {
+    ChineseCard randomCard;
+    do {
+      randomCard = cardList[getRandomNumber(cardList.length)];
+    } while (randomCard.id == widget.lastCardId);
+
+    return randomCard;
+  }
+
+  /// Display spinner or random card type
+  List<Widget> _getCardDisplay() {
+    return (cardList.length > 0 && currentCardDisplayed != null)
+        ? new List.generate(
+            1,
+            (int i) => randomCardTypeIndex == 1
+                ? new Card1(chineseCard: currentCardDisplayed)
+                : new Card2(chineseCard: currentCardDisplayed))
+        : new List.generate(1, (int i) => new CircularProgressIndicator());
   }
 }

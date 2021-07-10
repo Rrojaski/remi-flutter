@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../models/Chinese_Card.model.dart';
 import '../../../api/api.dart';
 import '../../../components/primary_app_bar/primary_app_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:REMI/components/primary_bottom_nav/primary_bottom_nav.dart';
 
 class CardListScreen extends StatefulWidget {
   @override
@@ -11,32 +13,41 @@ class CardListScreen extends StatefulWidget {
 class CardListState extends State<CardListScreen> {
   List<ChineseCard> cardList = [];
 
-  getCards() {
-    API.getCards().then((value) => {
-          setState(() {
-            var mappedList = value.map((document) {
-              Map data = document.data();
-              return new ChineseCard(
-                  id: document.id,
-                  character: data['character'],
-                  meaning: data['meaning'],
-                  piyin: data['piyin'],
-                  rating: data['rating'],
-                  image: "water.png");
-            });
-            cardList = mappedList.toList();
-          })
-        });
+  void _handleAddCardClick() {
+    getCards();
   }
 
-  deleteCard(String id, int index) {
-    API.deleteCard(id).then((value) => {
-          print('Delete Success, remve index: $index'),
-          if (value)
-            {
-              setState(() => {cardList.removeAt(index)})
-            }
-        });
+  /// Get Cards from api and set the state
+  getCards() async {
+    List<QueryDocumentSnapshot> cardListToMap = await API.getCards();
+
+    setState(() {
+      cardList = cardListToMap.map((document) {
+        Map data = document.data();
+
+        return new ChineseCard(
+            id: document.id,
+            character: data['character'],
+            meaning: data['meaning'],
+            piyin: data['piyin'],
+            rating: data['rating'],
+            image: "water.png");
+      }).toList();
+    });
+  }
+
+  /// Delete Card with id
+  deleteCard(String id, int index) async {
+    bool deleteSuccess = await API.deleteCard(id);
+
+    if (deleteSuccess) {
+      setState(() => {cardList.removeAt(index)});
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Card Deleted!'),
+        ),
+      );
+    }
   }
 
   @override
@@ -49,6 +60,7 @@ class CardListState extends State<CardListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getPrimaryAppBar("Card List"),
+      bottomNavigationBar: PrimaryBottomNav(_handleAddCardClick),
       body: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,

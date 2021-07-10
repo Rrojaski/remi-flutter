@@ -11,9 +11,12 @@ class CardDefinition extends StatefulWidget {
 
 class CardDefinitionState extends State<CardDefinition> {
   handleClick() {
-    Navigator.pop(context);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => StudyScreen()));
+    Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => StudyScreen(true, widget.chineseCard.id),
+          transitionDuration: Duration(seconds: 0),
+        ));
   }
 
   @override
@@ -43,7 +46,8 @@ class CardDefinitionState extends State<CardDefinition> {
                       style: TextStyle(fontSize: 120.0),
                     ),
                     Container(
-                        margin: EdgeInsets.only(top: 40.0, bottom: 30.0, left: 30),
+                        margin:
+                            EdgeInsets.only(top: 40.0, bottom: 30.0, left: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
